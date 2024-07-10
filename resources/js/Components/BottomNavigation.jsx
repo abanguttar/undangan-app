@@ -54,7 +54,7 @@ export default function BottomNavigation({ active, handleActive }) {
     );
 }
 function ButtonMusic() {
-    const [isPlay, setIsPlay] = useState(false);
+    const [isPlay, setIsPlay] = useState(true);
     const [isFinish, setIsFinish] = useState(false);
     const [music, setMusic] = useState(2);
     const musicSource = [

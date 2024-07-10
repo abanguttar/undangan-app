@@ -71,6 +71,7 @@ export default function Undangan(props) {
                 <Maps sectionRefs={sectionRefs} />
                 <Story sectionRefs={sectionRefs} />
                 <Gallery sectionRefs={sectionRefs} />
+                <Gift />
                 <Comment
                     sectionRefs={sectionRefs}
                     csrf_token={csrf_token}
@@ -113,7 +114,7 @@ function Cover({ handleShow }) {
                     <div className="container max-w-sm flex gap-4 justify-center mb-10 flex-col shadow-xl p-4">
                         <div className="container-guest flex justify-center items-center text-white flex-col text-3xl">
                             <h1 className="playball-regular">
-                                {params === "null" ? params : "Tamu"}
+                                {params !== "null" ? params : "Tamu"}
                             </h1>
                             <h4 className="playball-regular">di Tempat</h4>
                         </div>
@@ -128,6 +129,87 @@ function Cover({ handleShow }) {
                     </div>
                 </div>{" "}
             </ScrollAnimation>
+        </>
+    );
+}
+
+function Gift() {
+    const gifts = [
+        {
+            tipe: "Gopay/ShopeePay/DANA",
+            number: "085884885197",
+            name: "UTTAR PRADESH NAHENDRA",
+        },
+        {
+            tipe: "Rekening BCA",
+            number: "715-144-5296",
+            name: "UTTAR PRADESH NAHENDRA",
+        },
+        {
+            tipe: "Rekening Jago",
+            number: "1045-5721-1680",
+            name: "UTTAR PRADESH NAHENDRA",
+        },
+    ];
+
+    const copyToClipboard = (text) => {
+        navigator.clipboard
+            .writeText(text.replace(/-/g, ""))
+            .then(() => {
+                alert("Text copied to clipboard!");
+            })
+            .catch((err) => {
+                console.error("Could not copy text: ", err);
+            });
+    };
+
+    return (
+        <>
+            <div
+                id="gift"
+                className="container max-w-sm flex justify-center flex-col items-center "
+            >
+                <div className="card text-center p-6 mt-3  mb-10 shadow-lg gift">
+                    <h1 className="text-4xl mt-3 mb-8 playball-regular">
+                        Gift
+                    </h1>
+                    <ScrollAnimation
+                        animateIn="fadeIn"
+                        animateOut="fadeOut"
+                        className="flex justify-center items-center"
+                    >
+                        <div
+                            className="container-sm flex gap-4 justify-center items-center mb-10 flex-col"
+                            style={{ width: "300px" }}
+                        >
+                            {gifts.map((x, i) => {
+                                return (
+                                    <div key={i} className="container">
+                                        <h1 className="text-xl font-bold">
+                                            {x.tipe}
+                                        </h1>
+                                        <p className="text-xl">{x.number}</p>
+                                        <p className="text-md">{x.name}</p>
+                                        <div
+                                            className="tooltip"
+                                            data-tip={`Salin ${x.tipe}`}
+                                        >
+                                            <button
+                                                onClick={() =>
+                                                    copyToClipboard(x.number)
+                                                }
+                                                className="btn btn-sm bg-amber-800 hover:bg-amber-900 text-white"
+                                            >
+                                                Salin
+                                            </button>
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </ScrollAnimation>
+                </div>
+            </div>
         </>
     );
 }

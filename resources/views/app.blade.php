@@ -92,8 +92,11 @@
         .maps,
         #gallery,
         #story,
-        .story #comment,
-        .comment {
+        .story,
+        #comment,
+        .comment,
+        #gift,
+        .gift {
             background-image: url("/cache/ayat.png");
             background-size: cover;
             background-repeat: no-repeat;
