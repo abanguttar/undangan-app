@@ -34,7 +34,10 @@ export default function BottomNavigation({ active, handleActive }) {
 
     return (
         <>
-            <div className="btm-nav mx-auto max-w-sm" style={{ zIndex: "100" }}>
+            <div
+                className="btm-nav mx-auto bg-white max-w-sm"
+                style={{ zIndex: "100" }}
+            >
                 <ButtonMusic />
                 {array.map((x, i) => (
                     <button

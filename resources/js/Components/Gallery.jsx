@@ -35,6 +35,7 @@ export default function Gallery({ sectionRefs }) {
                             animateIn="flipInX"
                             animateOut="fadeIn"
                             initiallyVisible={false}
+                            delay={500}
                             className="flex justify-center items-center"
                         >
                             <img

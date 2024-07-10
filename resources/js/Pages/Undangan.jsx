@@ -96,7 +96,7 @@ function Cover({ handleShow }) {
             >
                 <div
                     id="cover"
-                    className="container container-countdown w-screen max-w-sm h-screen grid content-between p-0 "
+                    className="container container-countdown w-screen max-w-md max-h-screen h-screen grid content-between p-0 "
                     style={{
                         backgroundImage: "url('/cache/1.jpg')",
                         zIndex: "99999",
@@ -111,7 +111,7 @@ function Cover({ handleShow }) {
                         </p>
                         <p>Sabtu, 30 November 2024</p>
                     </div>
-                    <div className="container max-w-sm flex gap-4 justify-center mb-10 flex-col shadow-xl p-4">
+                    <div className="container max-w-md flex gap-4 justify-center mb-10 flex-col shadow-xl p-4">
                         <div className="container-guest flex justify-center items-center text-white flex-col text-3xl">
                             <h1 className="playball-regular">
                                 {params !== "null" ? params : "Tamu"}
@@ -136,19 +136,19 @@ function Cover({ handleShow }) {
 function Gift() {
     const gifts = [
         {
-            tipe: "Gopay/ShopeePay/DANA",
-            number: "085884885197",
-            name: "UTTAR PRADESH NAHENDRA",
+            tipe: "Gopay/ShopeePay/Dana",
+            number: "0821-1235-7947",
+            name: "a.n ERLINDA RAHMAWATI",
         },
         {
             tipe: "Rekening BCA",
             number: "715-144-5296",
-            name: "UTTAR PRADESH NAHENDRA",
+            name: "a.n UTTAR PRADESH NAHENDRA",
         },
         {
             tipe: "Rekening Jago",
             number: "1045-5721-1680",
-            name: "UTTAR PRADESH NAHENDRA",
+            name: "a.n UTTAR PRADESH NAHENDRA",
         },
     ];
 
