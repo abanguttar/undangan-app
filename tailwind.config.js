@@ -14,8 +14,12 @@ module.exports = {
             fontFamily: {
                 sans: ["Figtree", ...defaultTheme.fontFamily.sans],
             },
+            maxWidth: {
+                cu: "430px",
+            },
         },
     },
+    darkMode: false,
 
     plugins: [require("@tailwindcss/forms"), require("daisyui")],
 };

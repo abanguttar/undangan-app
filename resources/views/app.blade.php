@@ -27,7 +27,8 @@
             background-image: url("/cache/background-file.jpg");
             background-size: cover;
             background-position: center;
-            background-repeat: no-repeat;
+            /* background-repeat: no-repeat; */
+            min-height: 100vh;
             height: 100%;
             width: 100%;
             margin: 0;

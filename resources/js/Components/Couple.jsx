@@ -8,7 +8,7 @@ export default function Couple({ sectionRefs }) {
             <div
                 id="couple"
                 ref={(el) => (sectionRefs.current[1] = el)}
-                className="container max-w-sm relative p-4 text-center"
+                className="container max-w-cu relative p-4 text-center"
             >
                 <Snowfall color="#ffff" snowflakeCount={300} speed={[0, 2]} />
                 <ScrollAnimation

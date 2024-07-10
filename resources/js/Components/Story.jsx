@@ -44,7 +44,7 @@ export default function Story({ sectionRefs }) {
             <div
                 id="story"
                 ref={(el) => (sectionRefs.current[4] = el)}
-                className="container max-w-sm flex justify-center flex-col items-center "
+                className="container max-w-cu flex justify-center flex-col items-center "
             >
                 <div className="card text-center p-6 mt-3  mb-10 shadow-lg story">
                     <ScrollAnimation

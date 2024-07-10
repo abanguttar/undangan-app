@@ -60,7 +60,7 @@ export default function Undangan(props) {
             <div
                 className={
                     isShow === true
-                        ? "container border-1 mb-20 overflow-x-hidden shadow-xl border-black bg-white mb-10 m-0 p-0 flex justify-start p-0 flex-col shadow-lg"
+                        ? "container border-1 mb-20 overflow-x-hidden max-auto shadow-xl border-black max-w-cu bg-white mb-10 m-0 p-0 flex justify-start p-0 flex-col shadow-lg"
                         : "hidden"
                 }
             >
@@ -96,7 +96,7 @@ function Cover({ handleShow }) {
             >
                 <div
                     id="cover"
-                    className="container container-countdown w-screen max-w-md max-h-screen h-screen grid content-between p-0 "
+                    className="container container-countdown w-screen max-w-md h-screen grid content-between p-0 "
                     style={{
                         backgroundImage: "url('/cache/1.jpg')",
                         zIndex: "99999",
@@ -156,7 +156,7 @@ function Gift() {
         navigator.clipboard
             .writeText(text.replace(/-/g, ""))
             .then(() => {
-                alert("Text copied to clipboard!");
+                console.log("sukses di salin");
             })
             .catch((err) => {
                 console.error("Could not copy text: ", err);
@@ -167,7 +167,7 @@ function Gift() {
         <>
             <div
                 id="gift"
-                className="container max-w-sm flex justify-center flex-col items-center "
+                className="container max-w-cu flex justify-center flex-col items-center "
             >
                 <div className="card text-center p-6 mt-3  mb-10 shadow-lg gift">
                     <h1 className="text-4xl mt-3 mb-8 playball-regular">
@@ -179,7 +179,7 @@ function Gift() {
                         className="flex justify-center items-center"
                     >
                         <div
-                            className="container-sm flex gap-4 justify-center items-center mb-10 flex-col"
+                            className="container flex gap-4 justify-center items-center mb-10 flex-col"
                             style={{ width: "300px" }}
                         >
                             {gifts.map((x, i) => {

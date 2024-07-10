@@ -75,7 +75,7 @@ export default function Comment({ csrf_token, comm, sectionRefs }) {
             <div
                 id="comment"
                 ref={(el) => (sectionRefs.current[6] = el)}
-                className="container max-w-sm flex justify-center flex-col items-center "
+                className="container max-w-cu flex justify-center flex-col items-center "
             >
                 <div className="container text-center p-6 mt-3  shadow-lg comment">
                     <h1 className="text-4xl mt-3 mb-8 playball-regular">
@@ -105,7 +105,9 @@ export default function Comment({ csrf_token, comm, sectionRefs }) {
                                         {x.send_at}
                                     </time>
                                 </div>
-                                <div className="chat-bubble">{x.text}</div>
+                                <div className="chat-bubble bg-amber-800 text-white">
+                                    {x.text}
+                                </div>
                             </div>
                         ))}
                         <div className="p mb-3"></div>

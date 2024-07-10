@@ -35,7 +35,7 @@ export default function BottomNavigation({ active, handleActive }) {
     return (
         <>
             <div
-                className="btm-nav mx-auto bg-white max-w-sm"
+                className="btm-nav mx-auto bg-white max-w-cu h-12 "
                 style={{ zIndex: "100" }}
             >
                 <ButtonMusic />

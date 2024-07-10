@@ -22,7 +22,7 @@ export default function Gallery({ sectionRefs }) {
         <>
             <div
                 ref={(el) => (sectionRefs.current[5] = el)}
-                className="container-sm max-w-sm flex justify-center flex-col"
+                className="container max-w-cu flex justify-center flex-col"
                 id="gallery"
             >
                 <h1 className="text-4xl text-center playball-regular mt-5">

@@ -60,7 +60,7 @@ export default function CountDate({ sectionRefs }) {
             <div
                 id="countDate"
                 ref={(el) => (sectionRefs.current[0] = el)}
-                className="container container-countdown  max-w-sm grid content-between p-0 "
+                className="container container-countdown  max-w-cu grid content-between p-0 "
                 style={{
                     backgroundImage: imgUrl,
                 }}
@@ -70,7 +70,7 @@ export default function CountDate({ sectionRefs }) {
                     <p className="playball-regular text-5xl">Uttar & Erlin</p>
                     <p>Sabtu, 30 November 2024</p>
                 </div>
-                <div className="container max-w-sm flex gap-4 justify-center mb-10  shadow-xl p-4">
+                <div className="container max-w-cu flex gap-4 justify-center mb-10  shadow-xl p-4">
                     <Box counter={day} title={"Days"} />
                     <Box counter={hour} title={"Hours"} />
                     <Box counter={minute} title={"Minutes"} />
