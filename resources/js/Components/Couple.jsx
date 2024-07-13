@@ -16,7 +16,7 @@ export default function Couple({ sectionRefs }) {
                     animatePreScroll={false}
                     delay={500}
                 >
-                    <p style={{ marginTop: "5rem" }}>
+                    <p style={{ marginTop: "2.5rem" }}>
                         Assalamu'alaikum Wr Wb. <br /> Dengan memohon rahmat dan
                         ridho Allah Subhanahu WaTa’ala, insyaallah kami akan
                         menyelenggarakan acara pernikahan anak kami:

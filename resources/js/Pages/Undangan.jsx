@@ -158,29 +158,30 @@ function Gift() {
     const copyToClipboard = (text) => {
         const copyText = text.replace(/-/g, "");
 
-        if (navigator.clipboard) {
-            navigator.clipboard
-                .writeText(copyText)
-                .then(() => {
-                    console.log("sukses di salin");
-                })
-                .catch((err) => {
-                    console.error("Could not copy text: ", err);
-                });
-        } else {
-            const textArea = document.createElement("textarea");
-            textArea.value = copyText;
-            document.body.appendChild(textArea);
-            textArea.focus();
-            try {
-                textArea.select();
-                textArea.setSelectionRange(0, 99999); // For mobile devices
-                // Copy the text inside the text field
-                navigator.clipboard.writeText(textArea.value);
-            } catch (err) {
-                throw new Error(err);
-            }
+        // if (navigator.clipboard) {
+        //     navigator.clipboard
+        //         .writeText(copyText)
+        //         .then(() => {
+        //             console.log("sukses di salin");
+        //         })
+        //         .catch((err) => {
+        //             console.error("Could not copy text: ", err);
+        //         });
+        // } else {
+        const textArea = document.createElement("textarea");
+        textArea.value = copyText;
+        document.getElementById("gift").appendChild(textArea);
+        textArea.focus();
+        try {
+            textArea.select();
+            textArea.setSelectionRange(0, 99999); // For mobile devices
+            // Copy the text inside the text field
+            navigator.clipboard.writeText(textArea.value);
+            document.getElementById("gift").removeChild(textArea);
+        } catch (err) {
+            throw new Error(err);
         }
+        // }
     };
 
     return (

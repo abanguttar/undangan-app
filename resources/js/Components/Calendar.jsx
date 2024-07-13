@@ -36,7 +36,7 @@ function Event({ title, hour, showGreeting }) {
                 style={{ backgroundColor: "#FFF7ED" }}
             >
                 {showGreeting && (
-                    <p className="mt-5">
+                    <p className="mt-10">
                         Dengan segala kerendahan hati kami berharap kehadiran
                         Bapak/Ibu/Saudara/i dalam acara pernikahan anak kami
                         yang akan diselenggarakan pada :
@@ -46,14 +46,14 @@ function Event({ title, hour, showGreeting }) {
                 <h1
                     className={
                         showGreeting === true
-                            ? "text-5xl playball-regular mt-20"
+                            ? "text-5xl playball-regular mt-10"
                             : "text-5xl playball-regular mt-10"
                     }
                 >
                     {title}
                 </h1>
 
-                <div className="not-italic date-calendar playball-regular text-3xl gap-2 justify-center mt-7 flex">
+                <div className="not-italic date-calendar playball-regular text-3xl gap-2 justify-center mt-3 flex">
                     <p>Sabtu</p>
                     <span> | </span>
                     <p>30</p>
@@ -73,7 +73,7 @@ function Event({ title, hour, showGreeting }) {
                 <div
                     className={
                         showGreeting === true
-                            ? "flex justify-center items-center mt-20"
+                            ? "flex justify-center items-center mt-10"
                             : "flex justify-center items-center mt-10"
                     }
                 >
