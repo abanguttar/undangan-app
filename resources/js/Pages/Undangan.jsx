@@ -114,7 +114,7 @@ function Cover({ handleShow }) {
                         </p>
                         <p>Sabtu, 30 November 2024</p>
                     </div>
-                    <div className="container max-w-md flex gap-4 justify-center mb-10 flex-col shadow-xl p-4">
+                    <div className="container max-w-md flex gap-4 justify-center mb-10 flex-col p-4">
                         <div className="container-guest flex justify-center items-center text-white flex-col text-3xl">
                             <h1 className="playball-regular">
                                 {params !== "null" ? params : "Tamu"}
@@ -158,29 +158,31 @@ function Gift() {
     const copyToClipboard = (text) => {
         const copyText = text.replace(/-/g, "");
 
-        // if (navigator.clipboard) {
-        //     navigator.clipboard
-        //         .writeText(copyText)
-        //         .then(() => {
-        //             console.log("sukses di salin");
-        //         })
-        //         .catch((err) => {
-        //             console.error("Could not copy text: ", err);
-        //         });
-        // } else {
-        const textArea = document.createElement("textarea");
-        textArea.value = copyText;
-        document.getElementById("gift").appendChild(textArea);
-        textArea.focus();
-        try {
-            textArea.select();
-            textArea.setSelectionRange(0, 99999); // For mobile devices
-            // Copy the text inside the text field
-            navigator.clipboard.writeText(textArea.value);
-            document.getElementById("gift").removeChild(textArea);
-        } catch (err) {
-            throw new Error(err);
+        if (navigator.clipboard) {
+            navigator.clipboard
+                .writeText(copyText)
+                .then(() => {
+                    console.log("sukses di salin");
+                })
+                .catch((err) => {
+                    console.error("Could not copy text: ", err);
+                });
         }
+        //  else {
+        // const textArea = document.createElement("textarea");
+        // textArea.value = copyText;
+        // document.getElementById("gift").appendChild(textArea);
+        // textArea.focus();
+        // try {
+        //     textArea.select();
+        //     textArea.setSelectionRange(0, 99999);
+        //     // For mobile devices
+        //     // Copy the text inside the text field
+        //     navigator.clipboard.writeText(textArea.value);
+        //     document.getElementById("gift").removeChild(textArea);
+        // } catch (err) {
+        //     throw new Error(err);
+        // }
         // }
     };
 

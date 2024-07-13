@@ -57,7 +57,7 @@ export default function BottomNavigation({ active, handleActive }) {
     );
 }
 function ButtonMusic() {
-    const [isPlay, setIsPlay] = useState(true);
+    const [isPlay, setIsPlay] = useState(false);
     const [isFinish, setIsFinish] = useState(false);
     const [music, setMusic] = useState(0);
     const musicSource = [
@@ -86,7 +86,6 @@ function ButtonMusic() {
                 setMusic((prev) => prev + 1);
             }
         }
-        console.log({ music });
     }, [isFinish]);
 
     return (

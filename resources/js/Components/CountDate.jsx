@@ -63,6 +63,7 @@ export default function CountDate({ sectionRefs }) {
                 className="container container-countdown  max-w-cu grid content-between p-0 "
                 style={{
                     backgroundImage: imgUrl,
+                    height: "95vh",
                 }}
             >
                 <div className="couple-title text-center text-white mt-10">

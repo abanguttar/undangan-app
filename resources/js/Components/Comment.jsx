@@ -15,6 +15,7 @@ export default function Comment({ csrf_token, comm, sectionRefs }) {
     const [isReload, setReload] = useState(false);
     const [comments, setComments] = useState(comm);
     const [error, setError] = useState({ name: "", text: "" });
+    const [isSubmit, setIsSubmit] = useState(false);
     const arrayFlower = [...Array(5).keys()];
     const handleChange = (e) => {
         const key = e.target.id;
@@ -24,6 +25,7 @@ export default function Comment({ csrf_token, comm, sectionRefs }) {
 
     const handleClick = () => {
         setError({ name: "", text: "" });
+        setIsSubmit(true);
         fetch("/uttarerlinda", {
             method: "POST",
             headers: {
@@ -38,6 +40,7 @@ export default function Comment({ csrf_token, comm, sectionRefs }) {
             .then((res) => {
                 if (res.status === 422) {
                     return res.json().then((e) => {
+                        setIsSubmit(false);
                         let error = e.message.map((x) => {
                             let n = x.split("|");
                             return setError((pre) => ({
@@ -57,6 +60,9 @@ export default function Comment({ csrf_token, comm, sectionRefs }) {
                     name: "",
                     text: "",
                 });
+                setTimeout(() => {
+                    setIsSubmit(false);
+                }, 1000);
             });
     };
 
@@ -131,7 +137,7 @@ export default function Comment({ csrf_token, comm, sectionRefs }) {
                                         {x.send_at}
                                     </time>
                                 </div>
-                                <div className="chat-bubble bg-amber-800 text-white">
+                                <div className="chat-bubble bg-amber-800 text-white text-start">
                                     {x.text}
                                 </div>
                             </div>
@@ -177,16 +183,36 @@ export default function Comment({ csrf_token, comm, sectionRefs }) {
                             )}
 
                             <button
-                                className="btn bg-amber-800 hover:bg-amber-900 text-white"
-                                onClick={handleClick}
+                                className="btn bg-amber-800 hover:bg-amber-900 text-white relative"
+                                onClick={
+                                    isSubmit === true ? () => {} : handleClick
+                                }
                             >
-                                <FontAwesomeIcon icon={faPaperPlane} />
-                                Kirim
+                                {isSubmit === true ? (
+                                    <>
+                                        Mohon Tunggu
+                                        <Loader />
+                                    </>
+                                ) : (
+                                    <>
+                                        <FontAwesomeIcon icon={faPaperPlane} />
+                                        Kirim
+                                    </>
+                                )}
                             </button>
                         </div>
                     </ScrollAnimation>
                 </div>
             </div>
         </>
+    );
+}
+
+function Loader() {
+    return (
+        <div
+            className="loader w-6 h-6 ml-2"
+            style={{ position: "absolute", top: "20%", right: "30%" }}
+        ></div>
     );
 }
