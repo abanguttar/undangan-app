@@ -93,6 +93,7 @@ function Cover({ handleShow }) {
                 animateIn="fadeIn"
                 animateOut="fadeOut"
                 delay={500}
+                className="h-screen w-screen flex justify-center"
             >
                 <div
                     id="cover"
@@ -100,6 +101,8 @@ function Cover({ handleShow }) {
                     style={{
                         backgroundImage: "url('/cache/1.jpg')",
                         zIndex: "99999",
+                        height: "100vh",
+                        width: "420px",
                     }}
                 >
                     <div className="couple-title text-center text-white mt-10">
@@ -127,7 +130,7 @@ function Cover({ handleShow }) {
                             </button>
                         </div>
                     </div>
-                </div>{" "}
+                </div>
             </ScrollAnimation>
         </>
     );
@@ -153,23 +156,40 @@ function Gift() {
     ];
 
     const copyToClipboard = (text) => {
-        navigator.clipboard
-            .writeText(text.replace(/-/g, ""))
-            .then(() => {
-                console.log("sukses di salin");
-            })
-            .catch((err) => {
-                console.error("Could not copy text: ", err);
-            });
+        const copyText = text.replace(/-/g, "");
+
+        if (navigator.clipboard) {
+            navigator.clipboard
+                .writeText(copyText)
+                .then(() => {
+                    console.log("sukses di salin");
+                })
+                .catch((err) => {
+                    console.error("Could not copy text: ", err);
+                });
+        } else {
+            const textArea = document.createElement("textarea");
+            textArea.value = copyText;
+            document.body.appendChild(textArea);
+            textArea.focus();
+            try {
+                textArea.select();
+                textArea.setSelectionRange(0, 99999); // For mobile devices
+                // Copy the text inside the text field
+                navigator.clipboard.writeText(textArea.value);
+            } catch (err) {
+                throw new Error(err);
+            }
+        }
     };
 
     return (
         <>
             <div
                 id="gift"
-                className="container max-w-cu flex justify-center flex-col items-center "
+                className="container text-black max-w-cu flex justify-center flex-col items-center "
             >
-                <div className="card text-center p-6 mt-3  mb-10 shadow-lg gift">
+                <div className="card text-center p-6 mt-3  mb-24 shadow-lg gift">
                     <h1 className="text-4xl mt-3 mb-8 playball-regular">
                         Gift
                     </h1>

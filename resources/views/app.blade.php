@@ -4,9 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title inertia>{{ config('Wedding Uttar dan Erlinda') }}</title>
-    <link rel="icon" type="image/x-icon" href="/cache/icon.ico">
+    <link rel="icon" type="image/x-icon" href="/makima/icon.ico">
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
@@ -67,6 +66,8 @@
             animation: breathe 3s infinite alternate;
         }
 
+
+
         .flower-2 {
             bottom: -50px;
             right: -50px;
@@ -85,33 +86,58 @@
             animation: breathe 3s infinite alternate;
         }
 
+        .flower-transition-wrap {
+            top: -50px;
+            position: absolute;
+            z-index: 12;
+        }
 
-        #couple,
-        #calendar,
+
+        .flower-transition-0,
+        .flower-transition-4 {
+            animation: breathe 3s infinite alternate;
+        }
+
+        .flower-transition-1,
+        .flower-transition-3 {
+            transform: scaleX(-1);
+            animation: breathe 3s infinite alternate-reverse;
+        }
+
+        .flower-transition-2 {
+            animation: breathe 5s infinite alternate-reverse;
+        }
+
         .calendar,
-        #maps,
         .maps,
-        #gallery,
-        #story,
-        .story,
-        #comment,
-        .comment,
-        #gift,
         .gift {
             background-image: url("/cache/ayat.png");
             background-size: cover;
             background-repeat: no-repeat;
-            background-position: center,
+            background-position: center;
         }
 
-        /* #story,
-        .story {
-            background-image: url("/cache/background-file.jpg");
+        #story,
+        .story,
+        #calendar,
+        #maps,
+        #gallery,
+        /* #comment, */
+        #gift,
+        #couple {
+
+            background-image: url("/cache/bg-sample.png");
+            background-repeat: repeat;
+            background-position: center;
+        }
+
+        #comment {
+            background-image: url("/cache/ayat.png");
             background-size: cover;
             background-repeat: no-repeat;
-            background-position: center,
+            background-position: center;
+        }
 
-        } */
 
 
         #music-icon {
@@ -125,6 +151,16 @@
 
             100% {
                 transform: scale(1.2)
+            }
+        }
+
+        @keyframes breatheTransition {
+            0% {
+                transform: scale(1)
+            }
+
+            100% {
+                transform: scale(1.1)
             }
         }
 

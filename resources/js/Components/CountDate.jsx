@@ -84,7 +84,7 @@ function Box({ counter, title }) {
     return (
         <>
             <div
-                className="box-border h-20 w-20 flex-col rounded-lg flex justify-center items-center"
+                className="box-border text-black h-20 w-20 flex-col rounded-lg flex justify-center items-center"
                 style={{ backgroundColor: "#E7D7C9" }}
             >
                 <span className="countdown font-mono text-4xl">

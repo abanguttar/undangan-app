@@ -6,7 +6,7 @@ export default function Ayat() {
     return (
         <>
             <div
-                className="container max-w-cu  p-0 flex justify-center flex-col"
+                className="container max-w-cu  text-black p-0 flex justify-center flex-col"
                 style={{
                     height: "32rem",
                     position: "relative",

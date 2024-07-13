@@ -6,7 +6,7 @@ export default function Maps({ sectionRefs }) {
             <div
                 id="maps"
                 ref={(el) => (sectionRefs.current[3] = el)}
-                className="container max-w-cu flex justify-center flex-col items-center "
+                className="container text-black max-w-cu flex justify-center flex-col items-center "
             >
                 <div className="card text-center p-6 mt-3 mb-10 shadow-lg maps">
                     <h1 className="text-4xl mt-3 mb-8 playball-regular">

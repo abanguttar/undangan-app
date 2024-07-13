@@ -45,7 +45,7 @@ export default function BottomNavigation({ active, handleActive }) {
                         key={i}
                         className={`transition-colors duration-200 hover:text-amber-900 ${
                             active === i
-                                ? "border-t-2 border-amber-900 text-amber-900 "
+                                ? "border-t-2 border-amber-900  text-amber-900 "
                                 : ""
                         }`}
                     >
@@ -59,7 +59,7 @@ export default function BottomNavigation({ active, handleActive }) {
 function ButtonMusic() {
     const [isPlay, setIsPlay] = useState(true);
     const [isFinish, setIsFinish] = useState(false);
-    const [music, setMusic] = useState(2);
+    const [music, setMusic] = useState(0);
     const musicSource = [
         "/assets/music-1.mp3",
         "/assets/music-2.mp3",
@@ -73,7 +73,6 @@ function ButtonMusic() {
     useEffect(() => {
         const music = document.getElementById("music");
         isPlay === true ? music.play() : music.pause();
-
         music.onended = function () {
             setIsFinish(true);
         };
@@ -87,6 +86,7 @@ function ButtonMusic() {
                 setMusic((prev) => prev + 1);
             }
         }
+        console.log({ music });
     }, [isFinish]);
 
     return (
@@ -98,7 +98,7 @@ function ButtonMusic() {
                 src={musicSource[music]}
             ></audio>
             <div
-                className="container w-10 h-10 border-4 border-dark hover:border-amber-900 hover:text-amber-900 rounded-full flex justify-center items-center"
+                className="container text-black w-10 h-10 border-4 border-dark hover:border-amber-900 hover:text-amber-900 rounded-full flex justify-center items-center"
                 id={isPlay === true ? "music-icon" : "music-icon-2"}
                 style={{
                     position: "absolute",

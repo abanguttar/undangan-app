@@ -44,9 +44,9 @@ export default function Story({ sectionRefs }) {
             <div
                 id="story"
                 ref={(el) => (sectionRefs.current[4] = el)}
-                className="container max-w-cu flex justify-center flex-col items-center "
+                className="container p-4 text-black max-w-cu flex justify-center flex-col items-center "
             >
-                <div className="card text-center p-6 mt-3  mb-10 shadow-lg story">
+                <div className="card p-4 text-center mt-3 mb-10 shadow-lg story">
                     <ScrollAnimation
                         animateIn="fadeIn"
                         animatePreScroll={false}
@@ -74,9 +74,16 @@ function CardStory({ title, text, image }) {
     return (
         <>
             <div className="card mb-10">
-                <figure className=" drop-shadow-md border-4 border-amber-900 flex justify-center rounded-lg ">
-                    <img src={image} alt="uttar-pradesh" />
-                </figure>
+                <ScrollAnimation
+                    animateIn="flipInX"
+                    animateOut="fadeIn"
+                    initiallyVisible={false}
+                    delay={500}
+                >
+                    <figure className=" drop-shadow-md border-4 border-amber-900 flex justify-center rounded-lg ">
+                        <img src={image} alt="uttar-pradesh" />
+                    </figure>
+                </ScrollAnimation>
                 <h1 className="text-3xl mt-3 mb-5 playball-regular">{title}</h1>
                 <p>{text}</p>
             </div>

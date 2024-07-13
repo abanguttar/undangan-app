@@ -8,7 +8,7 @@ export default function Couple({ sectionRefs }) {
             <div
                 id="couple"
                 ref={(el) => (sectionRefs.current[1] = el)}
-                className="container max-w-cu relative p-4 text-center"
+                className="container max-w-cu text-black relative p-4 text-center"
             >
                 <Snowfall color="#ffff" snowflakeCount={300} speed={[0, 2]} />
                 <ScrollAnimation
@@ -17,13 +17,20 @@ export default function Couple({ sectionRefs }) {
                     delay={500}
                 >
                     <p style={{ marginTop: "5rem" }}>
-                        Assalamu'alaikum Wr Wb Dengan memohon rahmat dan ridho
-                        Allah Subhanahu WaTa’ala, insyaallah kami akan
+                        Assalamu'alaikum Wr Wb. <br /> Dengan memohon rahmat dan
+                        ridho Allah Subhanahu WaTa’ala, insyaallah kami akan
                         menyelenggarakan acara pernikahan anak kami:
                     </p>
                     <div className="container-groom flex items-center mt-10 flex-col">
                         <figure className="w-1/2 drop-shadow-md">
-                            <img src="/cache/2.jpg" alt="uttar-pradesh" />
+                            <ScrollAnimation
+                                animateIn="flipInX"
+                                animateOut="fadeIn"
+                                initiallyVisible={false}
+                                delay={500}
+                            >
+                                <img src="/cache/2.jpg" alt="uttar-pradesh" />
+                            </ScrollAnimation>
                         </figure>
                         <h1 className="text-3xl playball-regular mt-5">
                             Uttar Pradesh Nahendra
@@ -46,7 +53,14 @@ export default function Couple({ sectionRefs }) {
                         style={{ marginBottom: "5rem" }}
                     >
                         <figure className="w-1/2 drop-shadow-md">
-                            <img src="/cache/2.jpg" alt="uttar-pradesh" />
+                            <ScrollAnimation
+                                animateIn="flipInX"
+                                animateOut="fadeIn"
+                                initiallyVisible={false}
+                                delay={500}
+                            >
+                                <img src="/cache/2.jpg" alt="uttar-pradesh" />
+                            </ScrollAnimation>
                         </figure>
                         <h1 className="text-3xl playball-regular mt-5">
                             Erlinda Rahmawati

@@ -6,7 +6,7 @@ export default function Calendar({ sectionRefs }) {
     return (
         <>
             <div
-                className="container p-4 max-w-cu"
+                className="container text-black p-4 max-w-cu"
                 // style={{ backgroundColor: "#E7D7C9" }}
                 id="calendar"
                 ref={(el) => (sectionRefs.current[2] = el)}

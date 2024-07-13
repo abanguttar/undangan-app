@@ -1,17 +1,21 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ScrollAnimation from "react-animate-on-scroll";
+import Flower2 from "./Flower2";
 
 export default function Comment({ csrf_token, comm, sectionRefs }) {
     const [datas, setDatas] = useState({
         name: "",
         text: "",
     });
+    const chatRef = useRef(null);
+    const [chatRefActive, setChatRefActive] = useState(false);
+    const [datasLength, setDatasLength] = useState(null);
     const [isReload, setReload] = useState(false);
     const [comments, setComments] = useState(comm);
     const [error, setError] = useState({ name: "", text: "" });
-
+    const arrayFlower = [...Array(5).keys()];
     const handleChange = (e) => {
         const key = e.target.id;
         const value = e.target.value;
@@ -63,21 +67,39 @@ export default function Comment({ csrf_token, comm, sectionRefs }) {
                     return res.json();
                 })
                 .then((d) => {
+                    // console.log(d.comments);
+                    setDatasLength(d.comments.length - 1);
                     setComments(d.comments);
+                    setChatRefActive(true);
                 });
-
-            setReload(false);
+            setTimeout(() => {
+                setChatRefActive(false);
+                setReload(false);
+            }, 500);
         }
     }, [isReload]);
+
+    useEffect(() => {
+        if (chatRefActive) {
+            chatRef.current.scrollIntoView({
+                behavior: "smooth",
+            });
+        }
+    }, [chatRefActive]);
 
     return (
         <>
             <div
                 id="comment"
                 ref={(el) => (sectionRefs.current[6] = el)}
-                className="container max-w-cu flex justify-center flex-col items-center "
+                className="container relative text-black max-w-cu flex justify-center flex-col items-center "
             >
-                <div className="container text-center p-6 mt-3  shadow-lg comment">
+                <div className="flower-transition-wrap flex">
+                    {arrayFlower.map((x) => (
+                        <Flower2 key={x} name={x} />
+                    ))}
+                </div>
+                <div className="container text-center p-6 mt-16  shadow-lg comment">
                     <h1 className="text-4xl mt-3 mb-8 playball-regular">
                         Ucapan & Do'a
                     </h1>
@@ -93,12 +115,16 @@ export default function Comment({ csrf_token, comm, sectionRefs }) {
                                     30 November 2024
                                 </time>
                             </div>
-                            <div className="chat-bubble">
+                            <div className="chat-bubble text-white">
                                 Jangan lupa untuk datang yaa!
                             </div>
                         </div>
                         {comments.map((x, i) => (
-                            <div key={i} className="chat chat-start">
+                            <div
+                                ref={datasLength === i ? chatRef : null}
+                                key={i}
+                                className="chat chat-start"
+                            >
                                 <div className="chat-header">
                                     {x.name}
                                     <time className="text-xs opacity-50 ml-1">
@@ -125,7 +151,7 @@ export default function Comment({ csrf_token, comm, sectionRefs }) {
                             <input
                                 type="text"
                                 placeholder="Nama"
-                                className="input w-full max-w-sm"
+                                className="input w-full max-w-sm bg-white"
                                 id="name"
                                 onChange={handleChange}
                                 value={datas.name}
@@ -137,7 +163,7 @@ export default function Comment({ csrf_token, comm, sectionRefs }) {
                                 </p>
                             )}
                             <textarea
-                                className="textarea textarea-bordered max-w-sm"
+                                className="textarea textarea-bordered max-w-sm bg-white"
                                 placeholder="Ucapan & Do'a"
                                 id="text"
                                 maxLength={120}
