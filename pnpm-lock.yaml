@@ -26,6 +26,9 @@ importers:
       '@seafile/react-image-lightbox':
         specifier: ^2.0.5
         version: 2.0.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@splidejs/react-splide':
+        specifier: ^0.7.12
+        version: 0.7.12
       animate.css:
         specifier: ^4.1.1
         version: 4.1.1
@@ -408,6 +411,12 @@ packages:
     peerDependencies:
       react: ^16.x || ^17.x
       react-dom: ^16.x || ^17.x
+
+  '@splidejs/react-splide@0.7.12':
+    resolution: {integrity: sha512-UfXH+j47jsMc4x5HA/aOwuuHPqn6y9+ZTNYPWDRD8iLKvIVMZlzq2unjUEvyDAU+TTVPZOXkG2Ojeoz0P4AkZw==}
+
+  '@splidejs/splide@4.1.4':
+    resolution: {integrity: sha512-5I30evTJcAJQXt6vJ26g2xEkG+l1nXcpEw4xpKh0/FWQ8ozmAeTbtniVtVmz2sH1Es3vgfC4SS8B2X4o5JMptA==}
 
   '@tailwindcss/forms@0.5.7':
     resolution: {integrity: sha512-QE7X69iQI+ZXwldE+rzasvbJiyV/ju1FGHH0Qn2W3FKbuYtqp8LKcy6iSw79fVUT5/Vvf+0XgLCeYVG+UV6hOw==}
@@ -1478,6 +1487,12 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
       react-modal: 3.16.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+
+  '@splidejs/react-splide@0.7.12':
+    dependencies:
+      '@splidejs/splide': 4.1.4
+
+  '@splidejs/splide@4.1.4': {}
 
   '@tailwindcss/forms@0.5.7(tailwindcss@3.4.4)':
     dependencies:

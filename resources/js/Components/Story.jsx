@@ -4,25 +4,13 @@ export default function Story({ sectionRefs }) {
     const stories = [
         {
             title: "Perkenalan",
-            text: `Tidak ada yang kebetulan di dunia ini, Semua sudah tersusun
-        rapih oleh sang maha kuasa, kita tidak bisa memilih kepada
-        siapa kita akan jatuh cinta. Kami bertemu pada tahun 2022
-        lewat social media, Uniknya kami bertemu di social media
-        yang hanya diawali dengan Uttar mengirimkan pesan yang
-        isinya " Hai udah punya pacar belum ? " tidak ada yang
-        pernah menyangka bahwa pertemuan didunia maya itu membawa
-        kami pada suatu ikatan cinta yang suci hari ini.`,
-            image: `/cache/2.jpg`,
+            text: `"Tidak ada yang kebetulan di dunia ini; semua sudah tersusun rapi oleh Sang Maha Kuasa. Kita tidak bisa memilih kepada siapa kita akan jatuh cinta. C.S. Lewis mengatakan, 'Perkenalan adalah permulaan dari semua yang besar.' Kami bertemu pada tahun 2022 melalui media sosial. Uniknya, pertemuan kami dimulai dengan pesan sederhana, 'Hai, sudah punya pacar belum?' Tak ada yang pernah menyangka bahwa pertemuan di dunia maya itu membawa kami pada ikatan cinta yang suci hingga hari ini."`,
+            image: `/cache/2.jpeg`,
         },
         {
             title: "Pendekatan",
-            text: `Katanya cinta dapat tumbuh dengan kebersamaan,
-        Seiring berjalannya waktu dengan jarak yang tidak
-        terlalu jauh yaitu Citayam-Pasar Minggu, Akhirnya
-        kami sering bertemu untuk sekedar ngopi bareng dan
-        ngobrol. Singkat cerita 3 bulan setelahnya kami
-        memutuskan untuk berkomitmen.`,
-            image: `/cache/2.jpg`,
+            text: `"Cinta tidak terdiri dari saling memandang, tetapi dalam melihat ke arah yang sama bersama-sama." Seiring berjalannya waktu, dengan jarak yang tidak terlalu jauh antara Citayam dan Pasar Minggu, kami pun sering bertemu. Hanya untuk sekadar ngopi dan ngobrol, menikmati momen sederhana namun berarti. Singkat cerita, tiga bulan kemudian, kami memutuskan untuk berkomitmen.`,
+            image: `/cache/3.jpeg`,
         },
         {
             title: "Lamaran",
@@ -30,12 +18,12 @@ export default function Story({ sectionRefs }) {
             pertemuan keluarga yang menuntun kami pada ikatan
             suci, Kami melangsungkan acara lamaran pada bulan
             Juli 2024.`,
-            image: `/cache/2.jpg`,
+            image: `/cache/1.jpeg`,
         },
         {
             title: "Menikah",
-            text: `Percayalah, bukan karena bertemu lalu berjodoh tapi karena berjodoh lah maka kami dipertemukan, Kami memutuskan untuk mengikrarkan janji suci pernikahan kami di bulan November ini Insya Allah sebagai mana yang pernah dikatakan oleh Saydina Ali bin abi thalib " Apa yang menjadi takdirmu akan menemukan jalannya untuk menemukanmu".`,
-            image: `/cache/2.jpg`,
+            text: `Percayalah, bukan karena bertemu lalu berjodoh, tetapi karena berjodoh lah maka kami dipertemukan. Kami memutuskan untuk mengikrarkan janji suci pernikahan kami di bulan November ini, Insya Allah. Sebagaimana yang pernah dikatakan oleh Sayyidina Ali bin Abi Thalib, "Apa yang menjadi takdirmu akan menemukan jalannya untuk menemukanmu."`,
+            image: `/cache/4.jpeg`,
         },
     ];
 
@@ -75,8 +63,7 @@ function CardStory({ title, text, image }) {
         <>
             <div className="card mb-10">
                 <ScrollAnimation
-                    animateIn="flipInX"
-                    animateOut="fadeIn"
+                    animateIn="fadeIn"
                     initiallyVisible={false}
                     delay={500}
                 >
@@ -84,8 +71,22 @@ function CardStory({ title, text, image }) {
                         <img src={image} alt="uttar-pradesh" />
                     </figure>
                 </ScrollAnimation>
-                <h1 className="text-3xl mt-3 mb-5 playball-regular">{title}</h1>
-                <p>{text}</p>
+                <ScrollAnimation
+                    animateIn="fadeIn"
+                    initiallyVisible={false}
+                    delay={600}
+                >
+                    <h1 className="text-3xl mt-3 mb-5 playball-regular">
+                        {title}
+                    </h1>
+                </ScrollAnimation>
+                <ScrollAnimation
+                    animateIn="fadeIn"
+                    initiallyVisible={false}
+                    delay={800}
+                >
+                    <p>{text}</p>
+                </ScrollAnimation>
             </div>
         </>
     );

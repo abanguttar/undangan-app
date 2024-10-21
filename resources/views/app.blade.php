@@ -23,9 +23,9 @@
             display: flex;
             justify-content: center;
             align-items: start;
-            background-image: url("/cache/background-file.jpg");
-            background-size: cover;
-            background-position: center;
+            /* background-image: url("/cache/bg-sample.png"); */
+            /* background-size: cover;
+            background-position: center; */
             scroll-behavior: smooth;
             min-height: 100vh;
             height: 100%;
@@ -200,6 +200,22 @@
         .loader::after {
             opacity: 0.83;
             transform: rotate(60deg);
+        }
+
+        .covers {
+            opacity: 1;
+            transition: opacity 2s ease-in-out
+        }
+
+        .hidden-cover-hide {
+            opacity: 0;
+        }
+
+        .splide__arrow {
+            background: none !important;
+            border: none !important;
+            cursor: pointer !important;
+            display: none !important;
         }
 
         @keyframes l23 {

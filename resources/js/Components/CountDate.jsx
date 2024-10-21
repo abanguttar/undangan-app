@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 export default function CountDate({ sectionRefs }) {
-    const [imgUrl, setImgUrl] = useState("url('/makima/1.jpg')");
+    const [imgUrl, setImgUrl] = useState("url('/makima/1.jpeg')");
     const [day, setDay] = useState("00");
     const [hour, setHour] = useState("00");
     const [minute, setMinute] = useState("00");
     const [second, setSecond] = useState("00");
-    const dateWedding = new Date("2024-10-16").getTime();
+    const dateWedding = new Date("2024-11-30").getTime();
     useEffect(() => {
         const dateInterval = setInterval(() => {
             const dateNow = new Date().getTime();
@@ -35,18 +35,17 @@ export default function CountDate({ sectionRefs }) {
     }, []);
 
     const arrayImg = [
-        "url('/cache/1.jpg')",
-        "url('/cache/2.jpg')",
-        "url('/cache/3.jpg')",
-        "url('/cache/4.jpg')",
-        "url('/cache/5.png')",
-        "url('/cache/6.jpg')",
+        "url('/cache/1.jpeg')",
+        "url('/cache/2.jpeg')",
+        "url('/cache/3.jpeg')",
+        "url('/cache/4.jpeg')",
+        "url('/cache/5.jpeg')",
     ];
     useEffect(() => {
         let index = 0;
         const intervalValid = setInterval(() => {
             ++index;
-            if (index === 6) {
+            if (index === 5) {
                 index = 0;
             }
             setImgUrl(arrayImg[index]);

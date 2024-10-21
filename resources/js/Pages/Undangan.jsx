@@ -9,6 +9,7 @@ import { useEffect, useRef, useState } from "react";
 import Gallery from "@/Components/Gallery";
 import Comment from "@/Components/Comment";
 import ScrollAnimation from "react-animate-on-scroll";
+import Gift from "@/Components/Gift";
 
 export default function Undangan(props) {
     const [active, setActive] = useState(0);
@@ -22,7 +23,12 @@ export default function Undangan(props) {
     }
 
     const handleShow = () => {
-        setIsShow(true);
+        const covers = document.getElementsByClassName("covers")[0];
+        covers.classList.add("hidden-cover-hide");
+        setTimeout(() => {
+            covers.classList.add("hidden");
+            setIsShow(true);
+        }, 1800);
     };
 
     useEffect(() => {
@@ -55,14 +61,12 @@ export default function Undangan(props) {
 
     return (
         <>
-            {isShow === false ? <Cover handleShow={handleShow} /> : ""}
+            {<Cover handleShow={handleShow} />}
 
             <div
-                className={
-                    isShow === true
-                        ? "container border-1 mb-20 overflow-x-hidden max-auto shadow-xl border-black max-w-cu bg-white mb-10 m-0 p-0 flex justify-start p-0 flex-col shadow-lg"
-                        : "hidden"
-                }
+                className={`container border-1 mb-20 overflow-x-hidden max-auto shadow-xl border-black max-w-cu bg-white mb-10 m-0 p-0 flex justify-start p-0 flex-col shadow-lg ${
+                    isShow === false ? "hidden" : ""
+                }`}
             >
                 <CountDate sectionRefs={sectionRefs} />
                 <Ayat />
@@ -77,7 +81,8 @@ export default function Undangan(props) {
                     csrf_token={csrf_token}
                     comm={comments}
                 />
-                <BottomNavigation active={active} handleActive={handleActive} />
+                <Footer />
+                {/* <BottomNavigation active={active} handleActive={handleActive} /> */}
             </div>
         </>
     );
@@ -89,20 +94,15 @@ function Cover({ handleShow }) {
     const params = new URLSearchParams(url.search).get("to");
     return (
         <>
-            <ScrollAnimation
-                animateIn="fadeIn"
-                animateOut="fadeOut"
-                delay={500}
-                className="h-screen w-screen flex justify-center"
-            >
+            <div className={`h-screen w-screen flex justify-center covers `}>
                 <div
                     id="cover"
-                    className="container container-countdown w-screen max-w-md h-screen grid content-between p-0 "
+                    className={`container container-countdown w-screen max-w-md h-screen grid content-between p-0`}
                     style={{
-                        backgroundImage: "url('/cache/1.jpg')",
+                        backgroundImage: "url('/cache/1.jpeg')",
                         zIndex: "99999",
                         height: "100vh",
-                        width: "420px",
+                        width: "100%",
                     }}
                 >
                     <div className="couple-title text-center text-white mt-10">
@@ -131,108 +131,26 @@ function Cover({ handleShow }) {
                         </div>
                     </div>
                 </div>
-            </ScrollAnimation>
+            </div>
         </>
     );
 }
 
-function Gift() {
-    const gifts = [
-        {
-            tipe: "Gopay/ShopeePay/Dana",
-            number: "0821-1235-7947",
-            name: "a.n ERLINDA RAHMAWATI",
-        },
-        {
-            tipe: "Rekening BCA",
-            number: "715-144-5296",
-            name: "a.n UTTAR PRADESH NAHENDRA",
-        },
-        {
-            tipe: "Rekening Jago",
-            number: "1045-5721-1680",
-            name: "a.n UTTAR PRADESH NAHENDRA",
-        },
-    ];
-
-    const copyToClipboard = (text) => {
-        const copyText = text.replace(/-/g, "");
-
-        if (navigator.clipboard) {
-            navigator.clipboard
-                .writeText(copyText)
-                .then(() => {
-                    console.log("sukses di salin");
-                })
-                .catch((err) => {
-                    console.error("Could not copy text: ", err);
-                });
-        }
-        //  else {
-        // const textArea = document.createElement("textarea");
-        // textArea.value = copyText;
-        // document.getElementById("gift").appendChild(textArea);
-        // textArea.focus();
-        // try {
-        //     textArea.select();
-        //     textArea.setSelectionRange(0, 99999);
-        //     // For mobile devices
-        //     // Copy the text inside the text field
-        //     navigator.clipboard.writeText(textArea.value);
-        //     document.getElementById("gift").removeChild(textArea);
-        // } catch (err) {
-        //     throw new Error(err);
-        // }
-        // }
-    };
-
+function Footer() {
     return (
         <>
-            <div
-                id="gift"
-                className="container text-black max-w-cu flex justify-center flex-col items-center "
-            >
-                <div className="card text-center p-6 mt-3  mb-24 shadow-lg gift">
-                    <h1 className="text-4xl mt-3 mb-8 playball-regular">
-                        Gift
-                    </h1>
-                    <ScrollAnimation
-                        animateIn="fadeIn"
-                        animateOut="fadeOut"
-                        className="flex justify-center items-center"
+            <footer className="footer bg-amber-800 flex text-neutral-content items-center p-4 h-20 mb-0">
+                <p className="text-white flex">
+                    Copyright © {new Date().getFullYear()}{" "}
+                    <a
+                        className="hover:font-bold "
+                        href="https://www.instagram.com/uttarpn/"
                     >
-                        <div
-                            className="container flex gap-4 justify-center items-center mb-10 flex-col"
-                            style={{ width: "300px" }}
-                        >
-                            {gifts.map((x, i) => {
-                                return (
-                                    <div key={i} className="container">
-                                        <h1 className="text-xl font-bold">
-                                            {x.tipe}
-                                        </h1>
-                                        <p className="text-xl">{x.number}</p>
-                                        <p className="text-md">{x.name}</p>
-                                        <div
-                                            className="tooltip"
-                                            data-tip={`Salin ${x.tipe}`}
-                                        >
-                                            <button
-                                                onClick={() =>
-                                                    copyToClipboard(x.number)
-                                                }
-                                                className="btn btn-sm bg-amber-800 hover:bg-amber-900 text-white"
-                                            >
-                                                Salin
-                                            </button>
-                                        </div>
-                                    </div>
-                                );
-                            })}
-                        </div>
-                    </ScrollAnimation>
-                </div>
-            </div>
+                        @uttarpn
+                    </a>{" "}
+                    - All right reserved
+                </p>
+            </footer>
         </>
     );
 }

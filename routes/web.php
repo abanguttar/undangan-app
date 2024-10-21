@@ -35,7 +35,7 @@ Route::get('fetch-comments', function () {
 
     return response()->json([
         'success' => true,
-        'message' => 'ok',
+        'message' => 'ok',  
         'comments' => $comments
     ], 200);
 });
@@ -77,9 +77,14 @@ Route::post('/uttarerlinda', function (Request $request) {
     ], 200);
 });
 
+// Route::get('/login', function () {
+//     return Inertia::render('Admin/Login');
+// });
+
 // Route::get('/dashboard', function () {
-//     return Inertia::render('Dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
+//     return Inertia::render('Admin/Testing');
+// });
+// // ->middleware(['auth', 'verified'])->name('dashboard');
 
 // Route::middleware('auth')->group(function () {
 //     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

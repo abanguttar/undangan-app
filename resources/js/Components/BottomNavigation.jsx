@@ -45,8 +45,8 @@ export default function BottomNavigation({ active, handleActive }) {
                         key={i}
                         className={`transition-colors duration-200 hover:text-amber-900 ${
                             active === i
-                                ? "border-t-2 border-amber-900  text-amber-900 "
-                                : ""
+                                ? "border-t-2 border-amber-900 text-amber-900 "
+                                : "text-black"
                         }`}
                     >
                         <FontAwesomeIcon icon={x} />
@@ -57,9 +57,9 @@ export default function BottomNavigation({ active, handleActive }) {
     );
 }
 function ButtonMusic() {
-    const [isPlay, setIsPlay] = useState(false);
+    const [isPlay, setIsPlay] = useState(true);
     const [isFinish, setIsFinish] = useState(false);
-    const [music, setMusic] = useState(0);
+    const [music, setMusic] = useState(2);
     const musicSource = [
         "/assets/music-1.mp3",
         "/assets/music-2.mp3",
@@ -69,6 +69,8 @@ function ButtonMusic() {
     function handlePlay() {
         setIsPlay((prev) => !prev);
     }
+
+    console.log({ music });
 
     useEffect(() => {
         const music = document.getElementById("music");
@@ -80,11 +82,12 @@ function ButtonMusic() {
 
     useEffect(() => {
         if (isFinish === true) {
-            if (music >= 2) {
+            if (music === 2) {
                 setMusic(0);
             } else {
-                setMusic((prev) => prev + 1);
+                setMusic((prev) => parseInt(prev) + 1);
             }
+            setIsPlay(true);
         }
     }, [isFinish]);
 
