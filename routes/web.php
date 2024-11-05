@@ -27,6 +27,7 @@ Route::get('/', function () {
 });
 
 Route::get('cache/{img}', [Controller::class, 'cacheImg']);
+Route::get('cache-cover/{img}', [Controller::class, 'cacheImgCover']);
 
 Route::get('fetch-comments', function () {
     $comments = collect(DB::table('comments')
@@ -35,7 +36,7 @@ Route::get('fetch-comments', function () {
 
     return response()->json([
         'success' => true,
-        'message' => 'ok',  
+        'message' => 'ok',
         'comments' => $comments
     ], 200);
 });

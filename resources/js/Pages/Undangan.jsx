@@ -10,6 +10,8 @@ import Gallery from "@/Components/Gallery";
 import Comment from "@/Components/Comment";
 import ScrollAnimation from "react-animate-on-scroll";
 import Gift from "@/Components/Gift";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMusic } from "@fortawesome/free-solid-svg-icons";
 
 export default function Undangan(props) {
     const [active, setActive] = useState(0);
@@ -31,33 +33,33 @@ export default function Undangan(props) {
         }, 1800);
     };
 
-    useEffect(() => {
-        const observer = new IntersectionObserver((entries) =>
-            entries.forEach(
-                (entry) => {
-                    if (entry.isIntersecting) {
-                        const index = sectionRefs.current.findIndex(
-                            (ref) => ref.id === entry.target.id
-                        );
-                        setActive(index);
-                    }
-                },
-                {
-                    threshold: "1",
-                }
-            )
-        );
+    // useEffect(() => {
+    //     const observer = new IntersectionObserver((entries) =>
+    //         entries.forEach(
+    //             (entry) => {
+    //                 if (entry.isIntersecting) {
+    //                     const index = sectionRefs.current.findIndex(
+    //                         (ref) => ref.id === entry.target.id
+    //                     );
+    //                     setActive(index);
+    //                 }
+    //             },
+    //             {
+    //                 threshold: "1",
+    //             }
+    //         )
+    //     );
 
-        sectionRefs.current.forEach((ref) => {
-            if (ref) observer.observe(ref);
-        });
+    //     sectionRefs.current.forEach((ref) => {
+    //         if (ref) observer.observe(ref);
+    //     });
 
-        return () => {
-            sectionRefs.current.forEach((ref) => {
-                if (ref) observer.unobserve(ref);
-            });
-        };
-    }, []);
+    //     return () => {
+    //         sectionRefs.current.forEach((ref) => {
+    //             if (ref) observer.unobserve(ref);
+    //         });
+    //     };
+    // }, []);
 
     return (
         <>
@@ -66,6 +68,7 @@ export default function Undangan(props) {
             <div
                 className={`container border-1 mb-20 overflow-x-hidden max-auto shadow-xl border-black max-w-cu bg-white mb-10 m-0 p-0 flex justify-start p-0 flex-col shadow-lg ${
                     isShow === false ? "hidden" : ""
+                    // isShow === false ? "" : ""
                 }`}
             >
                 <CountDate sectionRefs={sectionRefs} />
@@ -99,7 +102,7 @@ function Cover({ handleShow }) {
                     id="cover"
                     className={`container container-countdown w-screen max-w-md h-screen grid content-between p-0`}
                     style={{
-                        backgroundImage: "url('/cache/1.jpeg')",
+                        backgroundImage: "url('/cache/vertical-1.jpeg')",
                         zIndex: "99999",
                         height: "100vh",
                         width: "100%",
@@ -136,10 +139,77 @@ function Cover({ handleShow }) {
     );
 }
 
+function ButtonMusic() {
+    const [isPlay, setIsPlay] = useState(true);
+    const [isFinish, setIsFinish] = useState(false);
+    const [music, setMusic] = useState(1);
+    const musicSource = [
+        "/assets/music-1.mp3",
+        "/assets/music-2.mp3",
+        "/assets/music-3.mp3",
+    ];
+
+    function handlePlay() {
+        setIsPlay((prev) => !prev);
+    }
+
+    // console.log({ music });
+
+    useEffect(() => {
+        const music = document.getElementById("music");
+        isPlay === true ? music.play() : music.pause();
+        music.onended = function () {
+            setIsFinish(true);
+        };
+    }, [isPlay]);
+
+    useEffect(() => {
+        if (isFinish === true) {
+            if (music === 2) {
+                setMusic(0);
+            } else {
+                setMusic((prev) => parseInt(prev) + 1);
+            }
+            setIsPlay(true);
+        }
+    }, [isFinish]);
+
+    return (
+        <>
+            <audio
+                className="hidden"
+                autoPlay
+                id="music"
+                src={musicSource[music]}
+            ></audio>
+            <div
+                // className="container text-black w-10 h-10 border-4 border-dark hover:border-amber-900 hover:text-amber-900 rounded-full flex justify-center items-center"
+                className="container text-black w-10 h-10 border-4 border-dark hover:border-amber-900 hover:text-amber-900 rounded-full flex justify-center items-center"
+                id={isPlay === true ? "music-icon" : "music-icon-2"}
+                // id="music-icon-2"
+                style={{
+                    position: "fixed",
+                    bottom: "4rem",
+                    right: "3%",
+                }}
+            >
+                {/* <button onClick={handlePlay}> */}
+                <button
+                    className="text-white hover:text-amber-900"
+                    onClick={handlePlay}
+                >
+                    <FontAwesomeIcon icon={faMusic} />
+                </button>
+            </div>
+        </>
+    );
+}
+
 function Footer() {
     return (
         <>
             <footer className="footer bg-amber-800 flex text-neutral-content items-center p-4 h-20 mb-0">
+                <ButtonMusic />
                 <p className="text-white flex">
                     Copyright © {new Date().getFullYear()}{" "}
                     <a

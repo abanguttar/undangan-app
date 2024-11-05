@@ -18,7 +18,7 @@ export default function Story({ sectionRefs }) {
             pertemuan keluarga yang menuntun kami pada ikatan
             suci, Kami melangsungkan acara lamaran pada bulan
             Juli 2024.`,
-            image: `/cache/1.jpeg`,
+            image: `/cache/5.jpeg`,
         },
         {
             title: "Menikah",
@@ -62,11 +62,7 @@ function CardStory({ title, text, image }) {
     return (
         <>
             <div className="card mb-10">
-                <ScrollAnimation
-                    animateIn="fadeIn"
-                    initiallyVisible={false}
-                    delay={500}
-                >
+                <ScrollAnimation animateIn="fadeIn" delay={500}>
                     <figure className=" drop-shadow-md border-4 border-amber-900 flex justify-center rounded-lg ">
                         <img src={image} alt="uttar-pradesh" />
                     </figure>

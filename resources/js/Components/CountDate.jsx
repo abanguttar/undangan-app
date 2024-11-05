@@ -35,17 +35,15 @@ export default function CountDate({ sectionRefs }) {
     }, []);
 
     const arrayImg = [
-        "url('/cache/1.jpeg')",
-        "url('/cache/2.jpeg')",
-        "url('/cache/3.jpeg')",
-        "url('/cache/4.jpeg')",
-        "url('/cache/5.jpeg')",
+        "url('/cache-cover/1.jpeg')",
+        "url('/cache-cover/2.jpeg')",
+        "url('/cache-cover/3.jpeg')",
     ];
     useEffect(() => {
         let index = 0;
         const intervalValid = setInterval(() => {
             ++index;
-            if (index === 5) {
+            if (index === 3) {
                 index = 0;
             }
             setImgUrl(arrayImg[index]);
@@ -62,7 +60,8 @@ export default function CountDate({ sectionRefs }) {
                 className="container container-countdown  max-w-cu grid content-between p-0 "
                 style={{
                     backgroundImage: imgUrl,
-                    height: "95vh",
+                    // height: "95vh",
+                    width: "100%",
                 }}
             >
                 <div className="couple-title text-center text-white mt-10">

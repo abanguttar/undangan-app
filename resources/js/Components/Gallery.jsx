@@ -8,14 +8,24 @@ export default function Gallery({ sectionRefs }) {
     const [isOpenUp, setIsOpenUp] = useState(false);
     const [photoIndex, setPhotoIndex] = useState(0);
     const images = [
-        "/cache/1.jpeg",
-        // "/cache/2.jpeg",
+        "/cache/2.jpeg",
         "/cache/3.jpeg",
         "/cache/4.jpeg",
         "/cache/5.jpeg",
+        "/cache/6.jpeg",
+        "/cache/7.jpeg",
+        "/cache/8.jpeg",
+        "/cache/9.jpeg",
     ];
+    // const imagesUpper = [
+    //     "https://placehold.co/358x200",
+    //     "https://placehold.co/175x100",
+    //     "https://placehold.co/175x230",
+    //     "https://placehold.co/175x230",
+    //     "https://placehold.co/175x100",
+    // ];
     const imagesUpper = [
-        "https://placehold.co/358x200",
+        "/cache/5.jpeg",
         "https://placehold.co/175x100",
         "https://placehold.co/175x230",
         "https://placehold.co/175x230",
@@ -41,10 +51,12 @@ export default function Gallery({ sectionRefs }) {
     const options = {
         type: "loop",
         gap: "1rem",
-        autoplay: true,
+        // autoplay: true,
         pauseOnHover: false,
         resetProgress: false,
-        height: "30rem",
+        perPage: 1,
+        speed: 200,
+        height: "17rem",
     };
 
     const thumsOptions = {
@@ -74,6 +86,10 @@ export default function Gallery({ sectionRefs }) {
                         src={imagesUpper[0]}
                         onClick={() => handleClickUpper(0)}
                         alt=""
+                        style={{
+                            width: "358px",
+                            height: "auto",
+                        }}
                         className="p-0 "
                     />
                     <div className="columns-2 gap-0 m-0">
@@ -93,7 +109,7 @@ export default function Gallery({ sectionRefs }) {
                     </div>
                 </div>
 
-                <div className="wrapper mt-5 w-10/12 flex justify-center">
+                <div className="wrapper mt-5 w-10/12 flex justify-center mb-10">
                     <Splide
                         options={options}
                         aria-label="Gallery-splide"
@@ -113,9 +129,9 @@ export default function Gallery({ sectionRefs }) {
                             </SplideTrack>
                         </div>
 
-                        <div className="splide__progress">
+                        {/* <div className="splide__progress">
                             <div className="splide__progress__bar" />
-                        </div>
+                        </div> */}
                     </Splide>
                 </div>
 
