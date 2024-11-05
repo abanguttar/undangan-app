@@ -4,7 +4,7 @@ export default function Gift() {
     const gifts = [
         {
             tipe: "Gopay/ShopeePay/Dana",
-            number: "0821-1235-7947",
+            number: "0858-9171-7523",
             name: "a.n ERLINDA RAHMAWATI",
         },
         {
