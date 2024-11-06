@@ -3,7 +3,8 @@ import "@seafile/react-image-lightbox/style.css";
 import { useState } from "react";
 import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
-export default function Gallery({ sectionRefs }) {
+import ScrollAnimation from "react-animate-on-scroll";
+export default function Gallery() {
     const [isOpen, setIsOpen] = useState(false);
     const [isOpenUp, setIsOpenUp] = useState(false);
     const [photoIndex, setPhotoIndex] = useState(0);
@@ -16,6 +17,8 @@ export default function Gallery({ sectionRefs }) {
         "/cache/7.jpeg",
         "/cache/8.jpeg",
         "/cache/9.jpeg",
+        "/cache/10.jpeg",
+        "/cache/11.jpeg",
     ];
     // const imagesUpper = [
     //     "https://placehold.co/358x200",
@@ -51,7 +54,7 @@ export default function Gallery({ sectionRefs }) {
     const options = {
         type: "loop",
         gap: "1rem",
-        // autoplay: true,
+        autoplay: true,
         pauseOnHover: false,
         resetProgress: false,
         perPage: 1,
@@ -73,67 +76,94 @@ export default function Gallery({ sectionRefs }) {
     return (
         <>
             <div
-                ref={(el) => (sectionRefs.current[5] = el)}
                 className="container max-w-cu flex justify-center text-black flex-col items-center"
                 id="gallery"
             >
-                <h1 className="text-4xl text-center playball-regular mt-5">
-                    Gallery
-                </h1>
+                <ScrollAnimation
+                    delay={200}
+                    initiallyVisible={false}
+                    animateIn="fadeIn"
+                    animateOnce={true}
+                >
+                    <h1 className="text-4xl text-center playball-regular mt-5">
+                        Gallery
+                    </h1>
+                </ScrollAnimation>
 
                 <div className="image-upper flex justify-center flex-wrap gap-1 mt-10">
-                    <img
-                        src={imagesUpper[0]}
-                        onClick={() => handleClickUpper(0)}
-                        alt=""
-                        style={{
-                            width: "358px",
-                            height: "auto",
-                        }}
-                        className="p-0 "
-                    />
-                    <div className="columns-2 gap-0 m-0">
-                        {imagesUpper.map((x, i) => {
-                            if (i > 0) {
-                                return (
-                                    <img
-                                        src={x}
-                                        alt={x}
-                                        className={` h-auto max-w-full rounded-lg p-1`}
-                                        key={`${i}image-upper`}
-                                        onClick={() => handleClickUpper(i)}
-                                    />
-                                );
-                            }
-                        })}
-                    </div>
-                </div>
-
-                <div className="wrapper mt-5 w-10/12 flex justify-center mb-10">
-                    <Splide
-                        options={options}
-                        aria-label="Gallery-splide"
-                        hasTrack={false}
+                    <ScrollAnimation
+                        delay={200}
+                        initiallyVisible={false}
+                        animateIn="fadeIn"
+                        animateOnce={true}
                     >
-                        <div style={{ position: "relative" }}>
-                            <SplideTrack>
-                                {images.map((x, i) => (
-                                    <SplideSlide key={`${x}splideslide`}>
+                        <img
+                            src={imagesUpper[0]}
+                            onClick={() => handleClickUpper(0)}
+                            alt=""
+                            style={{
+                                width: "358px",
+                                height: "auto",
+                            }}
+                            className="p-0 "
+                        />
+                    </ScrollAnimation>
+                    <ScrollAnimation
+                        delay={200}
+                        initiallyVisible={false}
+                        animateIn="fadeIn"
+                        animateOnce={true}
+                    >
+                        <div className="columns-2 gap-0 m-0">
+                            {imagesUpper.map((x, i) => {
+                                if (i > 0) {
+                                    return (
                                         <img
                                             src={x}
                                             alt={x}
-                                            onClick={() => handleClick(i)}
+                                            className={` h-auto max-w-full rounded-lg p-1`}
+                                            key={`${i}image-upper`}
+                                            onClick={() => handleClickUpper(i)}
                                         />
-                                    </SplideSlide>
-                                ))}
-                            </SplideTrack>
+                                    );
+                                }
+                            })}
                         </div>
+                    </ScrollAnimation>
+                </div>
 
-                        {/* <div className="splide__progress">
+                <ScrollAnimation
+                    className="flex justify-center m-0"
+                    delay={200}
+                    animateIn="fadeIn"
+                    animateOnce={true}
+                >
+                    <div className="wrapper mt-3 w-10/12  mb-10">
+                        <Splide
+                            options={options}
+                            aria-label="Gallery-splide"
+                            hasTrack={false}
+                        >
+                            <div style={{ position: "relative" }}>
+                                <SplideTrack>
+                                    {images.map((x, i) => (
+                                        <SplideSlide key={`${x}splideslide`}>
+                                            <img
+                                                src={x}
+                                                alt={x}
+                                                onClick={() => handleClick(i)}
+                                            />
+                                        </SplideSlide>
+                                    ))}
+                                </SplideTrack>
+                            </div>
+
+                            {/* <div className="splide__progress">
                             <div className="splide__progress__bar" />
                         </div> */}
-                    </Splide>
-                </div>
+                        </Splide>
+                    </div>
+                </ScrollAnimation>
 
                 {isOpenUp && (
                     <Lightbox

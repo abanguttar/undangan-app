@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-export default function CountDate({ sectionRefs }) {
-    const [imgUrl, setImgUrl] = useState("url('/makima/1.jpeg')");
+export default function CountDate() {
+    const [imgUrl, setImgUrl] = useState("url('/cache-cover/1.jpeg'");
     const [day, setDay] = useState("00");
     const [hour, setHour] = useState("00");
     const [minute, setMinute] = useState("00");
@@ -36,6 +36,7 @@ export default function CountDate({ sectionRefs }) {
 
     const arrayImg = [
         "url('/cache-cover/1.jpeg')",
+        "url('/cache-cover/4.jpeg')",
         "url('/cache-cover/2.jpeg')",
         "url('/cache-cover/3.jpeg')",
     ];
@@ -43,11 +44,11 @@ export default function CountDate({ sectionRefs }) {
         let index = 0;
         const intervalValid = setInterval(() => {
             ++index;
-            if (index === 3) {
+            if (index === arrayImg.length) {
                 index = 0;
             }
             setImgUrl(arrayImg[index]);
-        }, 3000);
+        }, 3500);
 
         return () => clearInterval(intervalValid);
     }, []);
@@ -56,7 +57,6 @@ export default function CountDate({ sectionRefs }) {
         <>
             <div
                 id="countDate"
-                ref={(el) => (sectionRefs.current[0] = el)}
                 className="container container-countdown  max-w-cu grid content-between p-0 "
                 style={{
                     backgroundImage: imgUrl,
@@ -67,7 +67,8 @@ export default function CountDate({ sectionRefs }) {
                 <div className="couple-title text-center text-white mt-10">
                     <span className="font-bold text-lg">THE WEDDING OF</span>
                     <p className="playball-regular text-5xl">Uttar & Erlin</p>
-                    <p>Sabtu, 30 November 2024</p>
+
+                    <p className="drop-shadow-md">Sabtu, 30 November 2024</p>
                 </div>
                 <div className="container max-w-cu flex gap-4 justify-center mb-10  shadow-xl p-4">
                     <Box counter={day} title={"Days"} />

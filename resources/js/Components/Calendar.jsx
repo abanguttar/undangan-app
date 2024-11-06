@@ -2,23 +2,23 @@ import { faLocationArrow } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "animate.css/animate.compat.css";
 import ScrollAnimation from "react-animate-on-scroll";
-export default function Calendar({ sectionRefs }) {
+export default function Calendar() {
     return (
         <>
             <div
                 className="container text-black p-4 max-w-cu"
                 // style={{ backgroundColor: "#E7D7C9" }}
                 id="calendar"
-                ref={(el) => (sectionRefs.current[2] = el)}
             >
                 <ScrollAnimation
                     animateIn="fadeIn"
                     animatePreScroll={false}
-                    delay={500}
+                    animateOnce={true}
+                    delay={200}
                 >
                     <Event
                         title={"Akad Nikah"}
-                        hour={"09"}
+                        hour={"10"}
                         showGreeting={true}
                     />
                     <Event title={"Resepsi"} hour={"11"} showGreeting={false} />
@@ -39,7 +39,8 @@ function Event({ title, hour, showGreeting }) {
                     <ScrollAnimation
                         animateIn="fadeIn"
                         animatePreScroll={false}
-                        delay={700}
+                        animateOnce={true}
+                        delay={250}
                     >
                         <p className="mt-10">
                             Dengan segala kerendahan hati kami berharap
@@ -51,7 +52,8 @@ function Event({ title, hour, showGreeting }) {
                 <ScrollAnimation
                     animateIn="fadeIn"
                     animatePreScroll={false}
-                    delay={700}
+                    animateOnce={true}
+                    delay={250}
                 >
                     <h1
                         className={
@@ -66,21 +68,19 @@ function Event({ title, hour, showGreeting }) {
                 <ScrollAnimation
                     animateIn="fadeIn"
                     animatePreScroll={false}
-                    delay={700}
+                    animateOnce={true}
+                    delay={250}
                 >
                     <div className="not-italic date-calendar playball-regular text-3xl gap-2 justify-center mt-3 flex">
-                        <p>Sabtu</p>
-                        <span> | </span>
-                        <p>30</p>
-                        <span> | </span>
-                        <p>November</p>
+                        <p>Sabtu, 30 November 2024</p>
                     </div>
-                    <h4 className="playball-regular text-3xl mt-2">2024</h4>
+                    <h4 className="playball-regular text-3xl mt-2"></h4>
                 </ScrollAnimation>
                 <ScrollAnimation
                     animateIn="fadeIn"
                     animatePreScroll={false}
-                    delay={700}
+                    animateOnce={true}
+                    delay={250}
                 >
                     <p className="playball-regular font-bold text-2xl mt-5 not-italic">
                         Pukul: {hour}.00 WIB
@@ -89,13 +89,14 @@ function Event({ title, hour, showGreeting }) {
                 <ScrollAnimation
                     animateIn="fadeIn"
                     animatePreScroll={false}
-                    delay={700}
+                    animateOnce={true}
+                    delay={250}
                 >
                     <p className=" font-bold text-2xl mt-5 not-italic">
                         Lokasi
                     </p>
                     <span className="text-md p-2">
-                        Pos Pemadam Kebakaran Ciganjur, Rt 2/Rw 1, Ciganjur,
+                        Pos Pemadam Kebakaran Ciganjur, RT 002/RW 001, Ciganjur,
                         Kec. Jagakarsa, Kota Jakarta Selatan, Daerah Khusus
                         Ibukota Jakarta 16514
                     </span>
@@ -111,6 +112,8 @@ function Event({ title, hour, showGreeting }) {
                         animateIn="wobble"
                         className="flex"
                         initiallyVisible={true}
+                        animateOnce={true}
+                        delay={250}
                     >
                         <a
                             href="https://www.google.com/maps/place/POS+Pemadam+Kebakaran+Ciganjur,+Jakarta+Selatan/@-6.3448119,106.7962152,17z/data=!3m1!4b1!4m6!3m5!1s0x2e69ee8bcb7c6613:0x4d4150329f688d7a!8m2!3d-6.3448172!4d106.7987901!16s%2Fg%2F11cm_hx1vy?hl=in-ID&entry=ttu"

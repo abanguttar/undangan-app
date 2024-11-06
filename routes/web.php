@@ -55,8 +55,14 @@ Route::post('/uttarerlinda', function (Request $request) {
         'name' => 'required|max:30',
         'text' => 'required|max:120',
     ], [
-        'required' => ':attribute|tidak boleh kosong!',
-        'max' => ':attribute|tidak boleh melibihi :max!',
+        'required' => ':attribute tidak boleh kosong!',
+        'max' => ':attribute tidak boleh melibihi :max!',
+    ]);
+
+    // Set custom attribute names
+    $validation->setAttributeNames([
+        'name' => 'Nama',
+        'text' => 'Teks',
     ]);
 
     if ($validation->fails()) {

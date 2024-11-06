@@ -1,92 +1,101 @@
 import Ayat from "@/Components/Ayat";
-import BottomNavigation from "@/Components/BottomNavigation";
 import Calendar from "@/Components/Calendar";
 import CountDate from "@/Components/CountDate";
 import Couple from "@/Components/Couple";
 import Maps from "@/Components/Maps";
 import Story from "@/Components/Story";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Gallery from "@/Components/Gallery";
 import Comment from "@/Components/Comment";
-import ScrollAnimation from "react-animate-on-scroll";
 import Gift from "@/Components/Gift";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMusic } from "@fortawesome/free-solid-svg-icons";
 
 export default function Undangan(props) {
-    const [active, setActive] = useState(0);
     const [isShow, setIsShow] = useState(false);
-    const sectionRefs = useRef([]);
+    const [isPlay, setIsPlay] = useState(false);
+    const [track, setTrack] = useState(0);
+    const [isFinish, setIsFinish] = useState(false);
     const csrf_token = props.csrf_token;
     const comments = props.comments;
-    function handleActive(i, id) {
-        setActive(i);
-        document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+    const musicSource = [
+        "/assets/music-1.mp3",
+        "/assets/music-2.mp3",
+        "/assets/music-3.mp3",
+    ];
+
+    function handlePlay() {
+        setIsPlay((prev) => !prev);
     }
 
     const handleShow = () => {
+        setIsPlay(true);
         const covers = document.getElementsByClassName("covers")[0];
+        const footer = document.getElementById("footer");
         covers.classList.add("hidden-cover-hide");
+
+        // Hide Cover
         setTimeout(() => {
             covers.classList.add("hidden");
             setIsShow(true);
         }, 1800);
+
+        // Show footer
+        setTimeout(() => {
+            footer.classList.remove("hidden");
+        }, 3000);
     };
 
-    // useEffect(() => {
-    //     const observer = new IntersectionObserver((entries) =>
-    //         entries.forEach(
-    //             (entry) => {
-    //                 if (entry.isIntersecting) {
-    //                     const index = sectionRefs.current.findIndex(
-    //                         (ref) => ref.id === entry.target.id
-    //                     );
-    //                     setActive(index);
-    //                 }
-    //             },
-    //             {
-    //                 threshold: "1",
-    //             }
-    //         )
-    //     );
+    useEffect(() => {
+        const music = document.getElementById("music");
+        const musicIcon = document.getElementById("music-icon");
+        if (isPlay) {
+            musicIcon.classList.add("rotate");
+            music.play();
+        } else {
+            musicIcon.classList.remove("rotate");
+            music.pause();
+        }
+        music.onended = () => {
+            setIsFinish(true);
+        };
+    }, [isPlay, track]);
 
-    //     sectionRefs.current.forEach((ref) => {
-    //         if (ref) observer.observe(ref);
-    //     });
-
-    //     return () => {
-    //         sectionRefs.current.forEach((ref) => {
-    //             if (ref) observer.unobserve(ref);
-    //         });
-    //     };
-    // }, []);
+    useEffect(() => {
+        if (isFinish) {
+            setIsFinish(false);
+            // Make it 1 if length same as current track
+            setTrack((prev) => (prev === musicSource.length ? 1 : prev + 1));
+            setIsPlay(true);
+        }
+    }, [isFinish]);
 
     return (
         <>
             {<Cover handleShow={handleShow} />}
 
             <div
-                className={`container border-1 mb-20 overflow-x-hidden max-auto shadow-xl border-black max-w-cu bg-white mb-10 m-0 p-0 flex justify-start p-0 flex-col shadow-lg ${
+                className={`container border-1 mb-0 pb-0 overflow-x-hidden max-auto shadow-xl border-black max-w-cu bg-white m-0 p-0 flex justify-start p-0 flex-col shadow-lg ${
                     isShow === false ? "hidden" : ""
                     // isShow === false ? "" : ""
                 }`}
             >
-                <CountDate sectionRefs={sectionRefs} />
+                <CountDate />
                 <Ayat />
-                <Couple sectionRefs={sectionRefs} />
-                <Calendar sectionRefs={sectionRefs} />
-                <Maps sectionRefs={sectionRefs} />
-                <Story sectionRefs={sectionRefs} />
-                <Gallery sectionRefs={sectionRefs} />
+                <Couple />
+                <Calendar />
+                <Maps />
+                <Story />
+                <Gallery />
                 <Gift />
-                <Comment
-                    sectionRefs={sectionRefs}
-                    csrf_token={csrf_token}
-                    comm={comments}
+                <Comment csrf_token={csrf_token} comm={comments} />
+                <ButtonMusic
+                    musicSource={musicSource}
+                    handlePlay={handlePlay}
+                    track={track}
                 />
-                <Footer />
-                {/* <BottomNavigation active={active} handleActive={handleActive} /> */}
             </div>
+            <Footer />
         </>
     );
 }
@@ -104,7 +113,7 @@ function Cover({ handleShow }) {
                     style={{
                         backgroundImage: "url('/cache/vertical-1.jpeg')",
                         zIndex: "99999",
-                        height: "100vh",
+                        height: "100dvh",
                         width: "100%",
                     }}
                 >
@@ -115,7 +124,10 @@ function Cover({ handleShow }) {
                         <p className="playball-regular text-5xl">
                             Uttar & Erlin
                         </p>
-                        <p>Sabtu, 30 November 2024</p>
+
+                        <p className="drop-shadow-md">
+                            Sabtu, 30 November 2024
+                        </p>
                     </div>
                     <div className="container max-w-md flex gap-4 justify-center mb-10 flex-col p-4">
                         <div className="container-guest flex justify-center items-center text-white flex-col text-3xl">
@@ -139,53 +151,18 @@ function Cover({ handleShow }) {
     );
 }
 
-function ButtonMusic() {
-    const [isPlay, setIsPlay] = useState(true);
-    const [isFinish, setIsFinish] = useState(false);
-    const [music, setMusic] = useState(1);
-    const musicSource = [
-        "/assets/music-1.mp3",
-        "/assets/music-2.mp3",
-        "/assets/music-3.mp3",
-    ];
-
-    function handlePlay() {
-        setIsPlay((prev) => !prev);
-    }
-
-    // console.log({ music });
-
-    useEffect(() => {
-        const music = document.getElementById("music");
-        isPlay === true ? music.play() : music.pause();
-        music.onended = function () {
-            setIsFinish(true);
-        };
-    }, [isPlay]);
-
-    useEffect(() => {
-        if (isFinish === true) {
-            if (music === 2) {
-                setMusic(0);
-            } else {
-                setMusic((prev) => parseInt(prev) + 1);
-            }
-            setIsPlay(true);
-        }
-    }, [isFinish]);
-
+function ButtonMusic({ musicSource, handlePlay, track }) {
     return (
         <>
             <audio
                 className="hidden"
                 autoPlay
                 id="music"
-                src={musicSource[music]}
+                src={musicSource[track]}
             ></audio>
             <div
-                // className="container text-black w-10 h-10 border-4 border-dark hover:border-amber-900 hover:text-amber-900 rounded-full flex justify-center items-center"
-                className="container text-black w-10 h-10 border-4 border-dark hover:border-amber-900 hover:text-amber-900 rounded-full flex justify-center items-center"
-                id={isPlay === true ? "music-icon" : "music-icon-2"}
+                className="container text-black w-10 h-10 border-4 border-dark border-amber-900 text-amber-900 rounded-full flex justify-center items-center"
+                id="music-icon"
                 // id="music-icon-2"
                 style={{
                     position: "fixed",
@@ -193,11 +170,7 @@ function ButtonMusic() {
                     right: "3%",
                 }}
             >
-                {/* <button onClick={handlePlay}> */}
-                <button
-                    className="text-white hover:text-amber-900"
-                    onClick={handlePlay}
-                >
+                <button className="text-amber-900" onClick={handlePlay}>
                     <FontAwesomeIcon icon={faMusic} />
                 </button>
             </div>
@@ -208,8 +181,10 @@ function ButtonMusic() {
 function Footer() {
     return (
         <>
-            <footer className="footer bg-amber-800 flex text-neutral-content items-center p-4 h-20 mb-0">
-                <ButtonMusic />
+            <footer
+                className={`hidden footer bg-amber-800 flex text-neutral-content items-center p-4 h-20 mb-0`}
+                id="footer"
+            >
                 <p className="text-white flex">
                     Copyright © {new Date().getFullYear()}{" "}
                     <a

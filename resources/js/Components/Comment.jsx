@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import ScrollAnimation from "react-animate-on-scroll";
 import Flower2 from "./Flower2";
 
-export default function Comment({ csrf_token, comm, sectionRefs }) {
+export default function Comment({ csrf_token, comm }) {
     const [datas, setDatas] = useState({
         name: "",
         text: "",
@@ -24,7 +24,7 @@ export default function Comment({ csrf_token, comm, sectionRefs }) {
     };
 
     const handleClick = () => {
-        setError({ name: "", text: "" });
+        setError([]);
         setIsSubmit(true);
         fetch("/uttarerlinda", {
             method: "POST",
@@ -41,14 +41,8 @@ export default function Comment({ csrf_token, comm, sectionRefs }) {
                 if (res.status === 422) {
                     return res.json().then((e) => {
                         setIsSubmit(false);
-                        let error = e.message.map((x) => {
-                            let n = x.split("|");
-                            return setError((pre) => ({
-                                ...pre,
-                                [n[0]]: n[1],
-                            }));
-                        });
-
+                        console.log(e.message);
+                        setError(e.message);
                         throw new Error("Gagal!");
                     });
                 }
@@ -97,7 +91,6 @@ export default function Comment({ csrf_token, comm, sectionRefs }) {
         <>
             <div
                 id="comment"
-                ref={(el) => (sectionRefs.current[6] = el)}
                 className="container relative text-black max-w-cu flex justify-center flex-col items-center "
             >
                 <div className="flower-transition-wrap flex">
@@ -147,6 +140,7 @@ export default function Comment({ csrf_token, comm, sectionRefs }) {
 
                     <ScrollAnimation
                         animateIn="fadeIn"
+                        animateOnce={true}
                         animatePreScroll={false}
                     >
                         <div className="container gap-2 flex flex-col flex-start mt-10">
@@ -163,9 +157,14 @@ export default function Comment({ csrf_token, comm, sectionRefs }) {
                                 value={datas.name}
                                 maxLength={30}
                             />
-                            {error.name && (
-                                <p className="text-error flex ml-2 p-0">
-                                    {error.name}
+                            {error[0] && (
+                                <p
+                                    className="text-red-600 font-semibold flex ml-2 p-0"
+                                    style={{
+                                        fontSize: "14px",
+                                    }}
+                                >
+                                    {error[0]}
                                 </p>
                             )}
                             <textarea
@@ -176,9 +175,14 @@ export default function Comment({ csrf_token, comm, sectionRefs }) {
                                 value={datas.text}
                                 onChange={handleChange}
                             ></textarea>
-                            {error.text && (
-                                <p className="text-error flex ml-2 p-0">
-                                    {error.text}
+                            {error[1] && (
+                                <p
+                                    className="text-red-600 font-semibold flex ml-2 p-0"
+                                    style={{
+                                        fontSize: "14px",
+                                    }}
+                                >
+                                    {error[1]}
                                 </p>
                             )}
 
@@ -211,7 +215,7 @@ export default function Comment({ csrf_token, comm, sectionRefs }) {
 function Loader() {
     return (
         <div
-            className="loader w-6 h-6 ml-2"
+            className="loader w-5 h-5 ml-3 mt-1"
             style={{ position: "absolute", top: "20%", right: "30%" }}
         ></div>
     );

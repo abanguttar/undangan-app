@@ -19,14 +19,16 @@ export default function Ayat() {
                 <Flower1 name={"flower-3"} />
                 <ScrollAnimation
                     animateIn="fadeIn"
+                    animateOnce={true}
                     animatePreScroll={false}
                     delay={200}
                 >
                     <div>
                         <ScrollAnimation
                             animateIn="fadeIn"
+                            animateOnce={true}
                             animatePreScroll={false}
-                            delay={300}
+                            delay={250}
                         >
                             <h1 className="playball-regular text-center text-4xl">
                                 Ar-Rum 21
@@ -34,8 +36,9 @@ export default function Ayat() {
                         </ScrollAnimation>
                         <ScrollAnimation
                             animateIn="fadeIn"
+                            animateOnce={true}
                             animatePreScroll={false}
-                            delay={400}
+                            delay={280}
                         >
                             <div className="container-ayat mt-5 text-center p-4 text-xl">
                                 <span className="elementor-heading-title elementor-size-default">
@@ -49,8 +52,9 @@ export default function Ayat() {
                         </ScrollAnimation>
                         <ScrollAnimation
                             animateIn="fadeIn"
+                            animateOnce={true}
                             animatePreScroll={false}
-                            delay={500}
+                            delay={300}
                         >
                             <div className="container-translate text-center p-6 text-sm">
                                 <span>

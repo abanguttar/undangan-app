@@ -9,10 +9,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playball&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&display=swap');
-    </style>
+
     <!-- Scripts -->
     @routes
     @viteReactRefresh
@@ -20,14 +17,28 @@
     @inertiaHead
 
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&display=swap');
+
+        @font-face {
+            font-family: "monotype-corsiva";
+            src: url('/assets/monotype-corsiva.ttf') format("truetype");
+        }
+
+
         body {
             display: flex;
             justify-content: center;
             align-items: start;
+            font-family: 'Noto Serif', serif !important;
+            /* font-weight: 400; */
+            /* Sets font weight to 400 */
+
             /* background-image: url("/cache/bg-sample.png"); */
             /* background-size: cover;
             background-position: center; */
             scroll-behavior: smooth;
+            overflow-x: hidden;
+
             min-height: 100vh;
             height: 100%;
             width: 100%;
@@ -36,10 +47,12 @@
         }
 
         .playball-regular {
-            font-family: "Playball", cursive;
-            font-weight: 400;
-            font-style: normal;
+            font-family: "monotype-corsiva", sans-serif;
+            /* font-weight: 400; */
+            /* font-style: normal; */
         }
+
+
 
         .container-countdown {
             position: relative;
@@ -141,7 +154,7 @@
 
 
 
-        #music-icon {
+        .rotate {
             animation: rotate 3s infinite alternate;
         }
 

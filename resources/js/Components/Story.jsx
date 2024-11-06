@@ -1,6 +1,5 @@
 import ScrollAnimation from "react-animate-on-scroll";
-
-export default function Story({ sectionRefs }) {
+export default function Story() {
     const stories = [
         {
             title: "Perkenalan",
@@ -9,7 +8,7 @@ export default function Story({ sectionRefs }) {
         },
         {
             title: "Pendekatan",
-            text: `"Cinta tidak terdiri dari saling memandang, tetapi dalam melihat ke arah yang sama bersama-sama." Seiring berjalannya waktu, dengan jarak yang tidak terlalu jauh antara Citayam dan Pasar Minggu, kami pun sering bertemu. Hanya untuk sekadar ngopi dan ngobrol, menikmati momen sederhana namun berarti. Singkat cerita, tiga bulan kemudian, kami memutuskan untuk berkomitmen.`,
+            text: `"Cinta tidak terdiri dari saling memandang, tetapi dalam melihat ke arah yang sama bersama-sama" Seiring berjalannya waktu, dengan jarak yang tidak terlalu jauh antara Citayam dan Pasar Minggu, kami pun sering bertemu. Hanya untuk sekadar ngopi dan ngobrol, menikmati momen sederhana namun berarti. Singkat cerita, tiga bulan kemudian, kami memutuskan untuk berkomitmen.`,
             image: `/cache/3.jpeg`,
         },
         {
@@ -28,33 +27,31 @@ export default function Story({ sectionRefs }) {
     ];
 
     return (
-        <>
-            <div
-                id="story"
-                ref={(el) => (sectionRefs.current[4] = el)}
-                className="container p-4 text-black max-w-cu flex justify-center flex-col items-center "
-            >
-                <div className="card p-4 text-center mt-3 mb-10 shadow-lg story">
-                    <ScrollAnimation
-                        animateIn="fadeIn"
-                        animatePreScroll={false}
-                        delay={500}
-                    >
-                        <h1 className="text-4xl mt-3 mb-8 playball-regular">
-                            Love Story
-                        </h1>
-                        {stories.map((x, i) => (
-                            <CardStory
-                                key={i}
-                                title={x.title}
-                                image={x.image}
-                                text={x.text}
-                            />
-                        ))}
-                    </ScrollAnimation>
-                </div>
+        <div
+            id="story"
+            className="container p-4 text-black max-w-cu flex justify-center flex-col items-center "
+        >
+            <div className="card p-4 text-center mt-3 mb-10 shadow-lg story">
+                <ScrollAnimation
+                    animateIn="fadeIn"
+                    animateOnce={true}
+                    animatePreScroll={false}
+                    delay={200}
+                >
+                    <h1 className="text-4xl mt-3 mb-8 playball-regular">
+                        Love Story
+                    </h1>
+                    {stories.map((x, i) => (
+                        <CardStory
+                            key={i}
+                            title={x.title}
+                            image={x.image}
+                            text={x.text}
+                        />
+                    ))}
+                </ScrollAnimation>
             </div>
-        </>
+        </div>
     );
 }
 
@@ -62,15 +59,24 @@ function CardStory({ title, text, image }) {
     return (
         <>
             <div className="card mb-10">
-                <ScrollAnimation animateIn="fadeIn" delay={500}>
-                    <figure className=" drop-shadow-md border-4 border-amber-900 flex justify-center rounded-lg ">
-                        <img src={image} alt="uttar-pradesh" />
+                <ScrollAnimation
+                    animateIn="fadeIn"
+                    animateOnce={true}
+                    delay={200}
+                >
+                    <figure className=" drop-shadow-md border-2 border-amber-900 flex justify-center rounded-lg ">
+                        <img
+                            src={image}
+                            alt={image}
+                            referrerPolicy="no-refferer"
+                        />
                     </figure>
                 </ScrollAnimation>
                 <ScrollAnimation
                     animateIn="fadeIn"
+                    animateOnce={true}
                     initiallyVisible={false}
-                    delay={600}
+                    delay={250}
                 >
                     <h1 className="text-3xl mt-3 mb-5 playball-regular">
                         {title}
@@ -78,8 +84,9 @@ function CardStory({ title, text, image }) {
                 </ScrollAnimation>
                 <ScrollAnimation
                     animateIn="fadeIn"
+                    animateOnce={true}
                     initiallyVisible={false}
-                    delay={800}
+                    delay={280}
                 >
                     <p>{text}</p>
                 </ScrollAnimation>

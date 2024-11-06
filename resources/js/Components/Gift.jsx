@@ -3,7 +3,7 @@ import ScrollAnimation from "react-animate-on-scroll";
 export default function Gift() {
     const gifts = [
         {
-            tipe: "Gopay/ShopeePay/Dana",
+            tipe: "Gopay/ShopeePay",
             number: "0858-9171-7523",
             name: "a.n ERLINDA RAHMAWATI",
         },
@@ -62,6 +62,7 @@ export default function Gift() {
                     </h1>
                     <ScrollAnimation
                         animateIn="fadeIn"
+                        animateOnce={true}
                         animateOut="fadeOut"
                         className="flex justify-center items-center"
                     >
